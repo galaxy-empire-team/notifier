@@ -7,8 +7,9 @@ import (
 )
 
 type Notification struct {
-	ID        consts.NotificationID
-	IsRead    bool
-	Data      map[string]any
-	CreatedAt time.Time
+	ID             uint64
+	NotificationID consts.NotificationID
+	IsRead         bool
+	Data           map[string]any
+	CreatedAt      time.Time
 }

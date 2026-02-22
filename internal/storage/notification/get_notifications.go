@@ -13,6 +13,7 @@ import (
 func (s *NotificationStorage) GetNotifications(ctx context.Context, userID uuid.UUID, offset uint16, limit uint16) ([]models.Notification, error) {
 	const getNotificationsQuery = `
 		SELECT 
+			id,
 			notification_id, 
 			data, 
 			is_read,
@@ -33,7 +34,13 @@ func (s *NotificationStorage) GetNotifications(ctx context.Context, userID uuid.
 	var body []byte
 	for rows.Next() {
 		var notification models.Notification
-		if err := rows.Scan(&notification.ID, &body, &notification.IsRead, &notification.CreatedAt); err != nil {
+		if err := rows.Scan(
+			&notification.ID,
+			&notification.NotificationID,
+			&body,
+			&notification.IsRead,
+			&notification.CreatedAt,
+		); err != nil {
 			return nil, fmt.Errorf("rows.Scan(): %w", err)
 		}
 

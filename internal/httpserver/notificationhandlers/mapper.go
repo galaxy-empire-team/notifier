@@ -8,7 +8,8 @@ func toTransportNotifications(notifications []models.Notification) []Notificatio
 	transportNotifications := make([]NotificationResponse, 0, len(notifications))
 	for _, n := range notifications {
 		transportNotifications = append(transportNotifications, NotificationResponse{
-			NotificationID: n.ID,
+			ID:             n.ID,
+			NotificationID: n.NotificationID,
 			IsRead:         n.IsRead,
 			Data:           n.Data,
 			CreatedAt:      n.CreatedAt,

@@ -9,4 +9,5 @@ func (hs *HttpServer) RegisterRoutes(
 ) {
 	// ----- Notification Routes -----
 	hs.apiRouter.GET("/notification/get", notificationhandlers.GetUserNotifications(notificationService))
+	hs.apiRouter.POST("/notification/read", notificationhandlers.SetReadFlag(notificationService))
 }

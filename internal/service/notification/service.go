@@ -10,6 +10,7 @@ import (
 
 type notificationStorage interface {
 	GetNotifications(ctx context.Context, userID uuid.UUID, offset uint16, limit uint16) ([]models.Notification, error)
+	SetReadFlag(ctx context.Context, userID uuid.UUID, notificationIDs []uint64) error
 }
 
 type Service struct {
