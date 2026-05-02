@@ -10,7 +10,7 @@ import (
 	"github.com/galaxy-empire-team/notifier/internal/models"
 )
 
-func (s *NotificationStorage) GetNotifications(ctx context.Context, userID uuid.UUID, offset uint16, limit uint16) ([]models.Notification, error) {
+func (s *NotificationStorage) GetNotificationsAfterID(ctx context.Context, userID uuid.UUID, afterID uint64, limit uint16) ([]models.Notification, error) {
 	const getNotificationsQuery = `
 		SELECT 
 			id,
@@ -19,12 +19,13 @@ func (s *NotificationStorage) GetNotifications(ctx context.Context, userID uuid.
 			is_read,
 			created_at
 		FROM session_beta.user_notifications
-		WHERE user_id = $1
-		ORDER BY created_at DESC
-		LIMIT $2 OFFSET $3;
+		WHERE user_id = $1 
+			AND id > $2
+		ORDER BY id DESC
+		LIMIT $3;
 	`
 
-	rows, err := s.DB.Query(ctx, getNotificationsQuery, userID, limit, offset)
+	rows, err := s.DB.Query(ctx, getNotificationsQuery, userID, afterID, limit)
 	if err != nil {
 		return nil, fmt.Errorf("DB.Query(): %w", err)
 	}

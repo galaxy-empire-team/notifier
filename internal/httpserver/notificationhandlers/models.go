@@ -15,8 +15,9 @@ type NotificationResponse struct {
 }
 
 type SearchParamsRequest struct {
-	Offset uint16 `json:"offset"`
-	Limit  uint16 `json:"limit"`
+	Limit    uint16 `json:"limit"`
+	BeforeID uint64 `json:"beforeID"`
+	AfterID  uint64 `json:"afterID"`
 }
 
 type NotificationIDsRequest struct {

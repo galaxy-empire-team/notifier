@@ -8,8 +8,13 @@ import (
 	"github.com/galaxy-empire-team/notifier/internal/models"
 )
 
+const (
+	notificationsLimit = 30
+)
+
 type notificationStorage interface {
-	GetNotifications(ctx context.Context, userID uuid.UUID, offset uint16, limit uint16) ([]models.Notification, error)
+	GetNotificationsBeforeID(ctx context.Context, userID uuid.UUID, beforeID uint64, limit uint16) ([]models.Notification, error)
+	GetNotificationsAfterID(ctx context.Context, userID uuid.UUID, afterID uint64, limit uint16) ([]models.Notification, error)
 	SetReadFlag(ctx context.Context, userID uuid.UUID, notificationIDs []uint64) error
 }
 

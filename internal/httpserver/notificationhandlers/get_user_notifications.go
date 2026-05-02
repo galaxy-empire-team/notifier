@@ -27,7 +27,7 @@ func GetUserNotifications(notificationService NotificationService) func(c *gin.C
 			return
 		}
 
-		notifications, err := notificationService.GetNotifications(c.Request.Context(), userID, req.Offset, req.Limit)
+		notifications, err := notificationService.GetNotifications(c.Request.Context(), userID, req.BeforeID, req.AfterID, req.Limit)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, ErrorResponse{
 				Err: err.Error(),
