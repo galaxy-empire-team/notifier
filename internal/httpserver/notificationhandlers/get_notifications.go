@@ -8,7 +8,7 @@ import (
 	"github.com/galaxy-empire-team/notifier/internal/httpserver/middleware"
 )
 
-func GetUserNotifications(notificationService NotificationService) func(c *gin.Context) {
+func GetNotifications(notificationService NotificationService) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		userID, err := middleware.RetrieveUserID(c)
 		if err != nil {

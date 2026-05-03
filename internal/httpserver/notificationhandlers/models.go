@@ -24,6 +24,10 @@ type NotificationIDsRequest struct {
 	NotificationIDs []uint64 `json:"notificationIDs"`
 }
 
+type CountResponse struct {
+	Count uint64 `json:"count"`
+}
+
 type ErrorResponse struct {
 	Err string `json:"err"`
 }

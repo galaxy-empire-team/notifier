@@ -13,6 +13,7 @@ const (
 )
 
 type notificationStorage interface {
+	GetNotificationsCount(ctx context.Context, userID uuid.UUID, afterID uint64) (uint64, error)
 	GetNotificationsBeforeID(ctx context.Context, userID uuid.UUID, beforeID uint64, limit uint16) ([]models.Notification, error)
 	GetNotificationsAfterID(ctx context.Context, userID uuid.UUID, afterID uint64, limit uint16) ([]models.Notification, error)
 	SetReadFlag(ctx context.Context, userID uuid.UUID, notificationIDs []uint64) error

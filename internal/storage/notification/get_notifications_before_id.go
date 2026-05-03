@@ -19,8 +19,7 @@ func (s *NotificationStorage) GetNotificationsBeforeID(ctx context.Context, user
 			is_read,
 			created_at
 		FROM session_beta.user_notifications
-		WHERE user_id = $1 
-			AND id < $2
+		WHERE user_id = $1 AND id < $2
 		ORDER BY id DESC
 		LIMIT $3;
 	`
