@@ -8,6 +8,7 @@ import (
 
 type NotificationResponse struct {
 	ID             uint64                `json:"id"`
+	Version        uint8                 `json:"version"`
 	NotificationID consts.NotificationID `json:"notificationID"`
 	IsRead         bool                  `json:"isRead"`
 	Data           map[string]any        `json:"body"`

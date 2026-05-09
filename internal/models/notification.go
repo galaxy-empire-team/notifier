@@ -8,6 +8,7 @@ import (
 
 type Notification struct {
 	ID             uint64
+	Version        uint8
 	NotificationID consts.NotificationID
 	IsRead         bool
 	Data           map[string]any

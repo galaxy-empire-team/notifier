@@ -14,6 +14,7 @@ func (s *NotificationStorage) GetNotificationsAfterID(ctx context.Context, userI
 	const getNotificationsQuery = `
 		SELECT 
 			id,
+			version,
 			notification_id, 
 			data, 
 			is_read,
@@ -36,6 +37,7 @@ func (s *NotificationStorage) GetNotificationsAfterID(ctx context.Context, userI
 		var notification models.Notification
 		if err := rows.Scan(
 			&notification.ID,
+			&notification.Version,
 			&notification.NotificationID,
 			&body,
 			&notification.IsRead,
