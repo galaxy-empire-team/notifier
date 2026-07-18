@@ -11,5 +11,5 @@ func (hs *HttpServer) RegisterRoutes(
 	hs.apiRouter.GET("/notifications", notificationhandlers.GetNotifications(notificationService))
 	hs.apiRouter.GET("/notifications/count", notificationhandlers.GetNotificationsCount(notificationService))
 	hs.apiRouter.POST("/notifications/read", notificationhandlers.SetReadFlag(notificationService))
-	hs.apiRouter.POST("/notifications/deleted", notificationhandlers.SetDeletedFlag(notificationService))
+	hs.apiRouter.POST("/notifications/delete", notificationhandlers.SetDeletedFlag(notificationService))
 }

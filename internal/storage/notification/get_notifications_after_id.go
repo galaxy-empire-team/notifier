@@ -20,7 +20,7 @@ func (s *NotificationStorage) GetNotificationsAfterID(ctx context.Context, userI
 			is_read,
 			created_at
 		FROM session_beta.user_notifications
-		WHERE user_id = $1 AND id > $2
+		WHERE user_id = $1 AND id > $2 AND is_deleted = false
 		ORDER BY id DESC
 		LIMIT $3;
 	`
